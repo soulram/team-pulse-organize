@@ -6,15 +6,21 @@ import { ButtonProps } from "@/components/ui/button";
 
 interface AddResourceButtonProps extends Omit<ButtonProps, "children"> {
   variant?: ButtonProps["variant"];
+  onClick?: () => void;
 }
 
 const AddResourceButton: React.FC<AddResourceButtonProps> = ({ 
   variant = "default",
+  onClick,
   ...props
 }) => {
   const handleClick = () => {
-    toast.success("Adding new resource...");
-    // Implementation for adding a new resource would go here
+    if (onClick) {
+      onClick();
+    } else {
+      toast.success("Adding new resource...");
+      // Default implementation for adding a new resource would go here
+    }
   };
 
   return (

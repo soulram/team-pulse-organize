@@ -6,15 +6,21 @@ import { ButtonProps } from "@/components/ui/button";
 
 interface NewTaskButtonProps extends Omit<ButtonProps, "children"> {
   variant?: ButtonProps["variant"];
+  onClick?: () => void;
 }
 
 const NewTaskButton: React.FC<NewTaskButtonProps> = ({ 
   variant = "default",
+  onClick,
   ...props
 }) => {
   const handleClick = () => {
-    toast.success("Creating new task...");
-    // Implementation for creating a new task would go here
+    if (onClick) {
+      onClick();
+    } else {
+      toast.success("Creating new task...");
+      // Default implementation for creating a new task would go here
+    }
   };
 
   return (

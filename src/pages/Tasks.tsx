@@ -16,6 +16,18 @@ import StatusBadge from '@/components/StatusBadge';
 import PriorityBadge from '@/components/PriorityBadge';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Calendar, Search, Plus, ArrowUpDown, Users } from 'lucide-react';
+import NewTaskButton from '@/components/buttons/NewTaskButton';
+import { 
+  Dialog, 
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
 
 // Mock data for tasks
 const mockTasks = [
@@ -160,6 +172,8 @@ const TaskCard: React.FC<{ task: typeof mockTasks[0] }> = ({ task }) => {
 
 // Kanban column component
 const KanbanColumn: React.FC<{ title: string; tasks: typeof mockTasks; color?: string }> = ({ title, tasks, color = 'bg-gray-100' }) => {
+  const [showAddTaskDialog, setShowAddTaskDialog] = useState(false);
+  
   return (
     <div className="kanban-column flex flex-col rounded-md overflow-hidden">
       <div className={`py-2 px-4 ${color} text-white font-medium flex items-center justify-between`}>
@@ -172,17 +186,112 @@ const KanbanColumn: React.FC<{ title: string; tasks: typeof mockTasks; color?: s
             <TaskCard key={task.id} task={task} />
           ))}
         </div>
-        <Button variant="ghost" className="w-full mt-2 border border-dashed border-gray-300 text-muted-foreground">
+        <Button 
+          variant="ghost" 
+          className="w-full mt-2 border border-dashed border-gray-300 text-muted-foreground"
+          onClick={() => setShowAddTaskDialog(true)}
+        >
           <Plus className="h-4 w-4 mr-1" /> Add Task
         </Button>
+        
+        <AddTaskDialog 
+          open={showAddTaskDialog} 
+          onOpenChange={setShowAddTaskDialog} 
+          status={title.toLowerCase().replace(' ', '-')}
+        />
       </div>
     </div>
+  );
+};
+
+interface AddTaskDialogProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  status?: string;
+}
+
+const AddTaskDialog: React.FC<AddTaskDialogProps> = ({ open, onOpenChange, status = 'to-do' }) => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast.success("Task created successfully!");
+    onOpenChange(false);
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Add New Task</DialogTitle>
+          <DialogDescription>
+            Create a new task in the {status} column
+          </DialogDescription>
+        </DialogHeader>
+        
+        <form onSubmit={handleSubmit}>
+          <div className="grid gap-4 py-4">
+            <div className="grid gap-2">
+              <Label htmlFor="title">Title</Label>
+              <Input id="title" placeholder="Task title" />
+            </div>
+            
+            <div className="grid gap-2">
+              <Label htmlFor="description">Description</Label>
+              <Textarea id="description" placeholder="Task description" />
+            </div>
+            
+            <div className="grid gap-2">
+              <Label htmlFor="priority">Priority</Label>
+              <Select defaultValue="medium">
+                <SelectTrigger>
+                  <SelectValue placeholder="Select priority" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="low">Low</SelectItem>
+                  <SelectItem value="medium">Medium</SelectItem>
+                  <SelectItem value="high">High</SelectItem>
+                  <SelectItem value="urgent">Urgent</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            
+            <div className="grid gap-2">
+              <Label htmlFor="due-date">Due Date</Label>
+              <Input id="due-date" type="date" />
+            </div>
+            
+            <div className="grid gap-2">
+              <Label htmlFor="project">Project</Label>
+              <Select>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select project" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="website">Website Redesign</SelectItem>
+                  <SelectItem value="mobile">Mobile App Development</SelectItem>
+                  <SelectItem value="marketing">Marketing Campaign</SelectItem>
+                  <SelectItem value="product">Product Launch</SelectItem>
+                  <SelectItem value="crm">CRM Implementation</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          
+          <DialogFooter>
+            <Button variant="outline" type="button" onClick={() => onOpenChange(false)}>
+              Cancel
+            </Button>
+            <Button type="submit">Create Task</Button>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
   );
 };
 
 const Tasks: React.FC = () => {
   const [taskView, setTaskView] = useState<'kanban' | 'list'>('kanban');
   const columns = groupTasksByStatus();
+  const [showNewTaskDialog, setShowNewTaskDialog] = useState(false);
   
   return (
     <div className="space-y-6">
@@ -192,9 +301,12 @@ const Tasks: React.FC = () => {
           <p className="text-muted-foreground">Manage and track tasks across all projects</p>
         </div>
         
-        <Button>
-          <Plus className="mr-2 h-4 w-4" /> New Task
-        </Button>
+        <NewTaskButton onClick={() => setShowNewTaskDialog(true)} />
+        
+        <AddTaskDialog 
+          open={showNewTaskDialog} 
+          onOpenChange={setShowNewTaskDialog} 
+        />
       </div>
 
       <Tabs defaultValue="all" className="space-y-4">

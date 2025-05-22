@@ -6,15 +6,21 @@ import { ButtonProps } from "@/components/ui/button";
 
 interface CreateNewProjectButtonProps extends Omit<ButtonProps, "children"> {
   variant?: ButtonProps["variant"];
+  onClick?: () => void;
 }
 
 const CreateNewProjectButton: React.FC<CreateNewProjectButtonProps> = ({ 
   variant = "default",
+  onClick,
   ...props
 }) => {
   const handleClick = () => {
-    toast.success("Creating new project...");
-    // Implementation for creating a new project would go here
+    if (onClick) {
+      onClick();
+    } else {
+      toast.success("Creating new project...");
+      // Implementation for creating a new project would go here
+    }
   };
 
   return (
