@@ -1,8 +1,9 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import { LayoutDashboard, FolderKanban, ListTodo, CalendarDays, Users, Settings } from 'lucide-react';
+import { LayoutDashboard, FolderKanban, ListTodo, CalendarDays, Settings } from 'lucide-react';
+import { Users } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -13,7 +14,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarTrigger,
-  useSidebar
 } from "@/components/ui/sidebar";
 
 const navItems = [
@@ -26,7 +26,7 @@ const navItems = [
 ];
 
 const AppSidebar: React.FC = () => {
-  const { collapsed } = useSidebar();
+  const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
   
   const getNavLinkClass = ({ isActive }: { isActive: boolean }) => {
@@ -42,13 +42,12 @@ const AppSidebar: React.FC = () => {
       className={`bg-sidebar transition-all duration-300 ${
         collapsed ? 'w-16' : 'w-64'
       }`} 
-      collapsible
     >
       <SidebarContent>
         <div className="mt-4 mb-8">
           {!collapsed && (
             <div className="px-3 py-2">
-              <SidebarTrigger className="ml-auto block text-sidebar-foreground hover:text-white" />
+              <SidebarTrigger className="ml-auto block text-sidebar-foreground hover:text-white" onClick={() => setCollapsed(!collapsed)} />
             </div>
           )}
         </div>

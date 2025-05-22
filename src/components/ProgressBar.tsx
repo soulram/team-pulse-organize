@@ -1,43 +1,58 @@
 
 import React from 'react';
 import { Progress } from "@/components/ui/progress";
-import { cn } from '@/lib/utils';
+import { cva } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+
+const progressVariants = cva(
+  "transition-all",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary",
+        success: "bg-green-500",
+        warning: "bg-amber-500",
+        danger: "bg-red-500",
+      },
+      size: {
+        default: "h-2",
+        sm: "h-1",
+        lg: "h-3",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+);
 
 interface ProgressBarProps {
   value: number;
-  className?: string;
   showLabel?: boolean;
-  size?: 'sm' | 'md' | 'lg';
+  variant?: 'default' | 'success' | 'warning' | 'danger';
+  size?: 'default' | 'sm' | 'lg';
+  className?: string;
 }
 
-const ProgressBar: React.FC<ProgressBarProps> = ({ value, className, showLabel = true, size = 'md' }) => {
-  const progress = Math.max(0, Math.min(100, value));
-  
-  const getProgressColor = () => {
-    if (progress < 25) return "bg-status-off-track";
-    if (progress < 70) return "bg-status-at-risk";
-    return "bg-status-on-track";
-  };
-  
-  const getSizeClass = () => {
-    switch (size) {
-      case 'sm': return 'h-1';
-      case 'lg': return 'h-3';
-      default: return 'h-2';
-    }
-  };
-
+const ProgressBar: React.FC<ProgressBarProps> = ({
+  value,
+  showLabel = true,
+  variant = 'default',
+  size = 'default',
+  className,
+}) => {
   return (
     <div className={cn("w-full", className)}>
-      <Progress 
-        value={progress} 
-        className={cn(getSizeClass(), "mb-1")}
-        indicatorClassName={getProgressColor()}
-      />
+      <Progress value={value} className={cn("w-full", size === "sm" ? "h-1" : size === "lg" ? "h-3" : "h-2")}>
+        <div 
+          className={cn(progressVariants({ variant }), "h-full")}
+          style={{ width: `${Math.min(Math.max(value, 0), 100)}%` }}
+        />
+      </Progress>
       {showLabel && (
-        <div className="flex justify-between text-xs text-muted-foreground">
-          <span>Progress</span>
-          <span>{progress}%</span>
+        <div className="text-xs text-muted-foreground text-right mt-1">
+          {Math.round(value)}%
         </div>
       )}
     </div>

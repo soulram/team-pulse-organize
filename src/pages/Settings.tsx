@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -99,7 +98,7 @@ const Settings: React.FC = () => {
                     Automatically save changes every 5 minutes
                   </div>
                 </div>
-                <Switch id="auto-save" defaultChecked />
+                <Switch defaultChecked={true} />
               </div>
               
               <div className="flex items-center justify-between">
@@ -109,7 +108,7 @@ const Settings: React.FC = () => {
                     Allow anonymous usage data collection
                   </div>
                 </div>
-                <Switch id="analytics" defaultChecked />
+                <Switch defaultChecked={true} />
               </div>
               
               <div className="flex items-center justify-between">
@@ -272,7 +271,7 @@ const Settings: React.FC = () => {
                       Notify when tasks are assigned to you
                     </div>
                   </div>
-                  <Switch defaultChecked />
+                  <Switch defaultChecked={true} />
                 </div>
                 
                 <div className="flex items-center justify-between">
@@ -282,7 +281,7 @@ const Settings: React.FC = () => {
                       Notify when tasks you're assigned to are updated
                     </div>
                   </div>
-                  <Switch defaultChecked />
+                  <Switch defaultChecked={true} />
                 </div>
                 
                 <div className="flex items-center justify-between">
@@ -292,7 +291,7 @@ const Settings: React.FC = () => {
                       Notify when projects you're a member of are updated
                     </div>
                   </div>
-                  <Switch defaultChecked />
+                  <Switch defaultChecked={true} />
                 </div>
                 
                 <div className="flex items-center justify-between">
@@ -302,7 +301,7 @@ const Settings: React.FC = () => {
                       Notify when deadlines are approaching
                     </div>
                   </div>
-                  <Switch defaultChecked />
+                  <Switch defaultChecked={true} />
                 </div>
               </div>
               
@@ -316,7 +315,7 @@ const Settings: React.FC = () => {
                       Show notifications for comments on your tasks
                     </div>
                   </div>
-                  <Switch defaultChecked />
+                  <Switch defaultChecked={true} />
                 </div>
                 
                 <div className="flex items-center justify-between">
@@ -326,7 +325,7 @@ const Settings: React.FC = () => {
                       Show notifications when you're mentioned
                     </div>
                   </div>
-                  <Switch defaultChecked />
+                  <Switch defaultChecked={true} />
                 </div>
                 
                 <div className="flex items-center justify-between">
@@ -336,7 +335,7 @@ const Settings: React.FC = () => {
                       Show notifications for system updates
                     </div>
                   </div>
-                  <Switch defaultChecked />
+                  <Switch defaultChecked={true} />
                 </div>
               </div>
               

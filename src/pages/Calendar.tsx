@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -336,7 +335,10 @@ const CalendarPage: React.FC = () => {
                             <Badge className="bg-white/20 hover:bg-white/30">{event.project}</Badge>
                           </div>
                           {event.attendees.length > 0 && (
-                            <p className="text-xs mt-1 truncate">{event.attendees.length} attendee{event.attendees.length !== 1 ? 's' : ''}</p>
+                            <div className="text-xs mt-1 truncate flex items-center gap-1">
+                              <Users className="h-3 w-3" />
+                              <span>{event.attendees.length} attendee{event.attendees.length !== 1 ? 's' : ''}</span>
+                            </div>
                           )}
                         </div>
                       );
