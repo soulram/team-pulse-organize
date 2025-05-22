@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,21 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Custom project status colors
+				status: {
+					'on-track': '#22c55e',  // green
+					'at-risk': '#f59e0b',   // amber
+					'off-track': '#ef4444', // red
+					'completed': '#3b82f6', // blue
+					'not-started': '#6b7280' // gray
+				},
+				// Custom priority colors
+				priority: {
+					low: '#22c55e',    // green
+					medium: '#f59e0b', // amber
+					high: '#ef4444',   // red
+					urgent: '#7c3aed'  // purple
 				}
 			},
 			borderRadius: {
