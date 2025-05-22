@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -7,7 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Search, Users, Plus, Mail, Phone } from 'lucide-react';
+import { Search, Users, Mail, Phone } from 'lucide-react';
+import AddResourceButton from '@/components/buttons/AddResourceButton';
 
 // Mock resource data
 const resources = [
@@ -219,9 +219,7 @@ const Resources: React.FC = () => {
           <p className="text-muted-foreground">Manage your team members and their allocations</p>
         </div>
         
-        <Button>
-          <Plus className="mr-2 h-4 w-4" /> Add Resource
-        </Button>
+        <AddResourceButton />
       </div>
 
       <Tabs defaultValue="people" className="space-y-4">
