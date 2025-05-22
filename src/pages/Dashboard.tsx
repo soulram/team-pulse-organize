@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -6,7 +5,7 @@ import StatusBadge from '@/components/StatusBadge';
 import ProgressBar from '@/components/ProgressBar';
 import { Button } from "@/components/ui/button";
 import { AreaChart, BarChart } from "@/components/ui/chart";
-import { Clock, Calendar, ArrowRight, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { Clock, Calendar, ArrowRight, AlertCircle, CheckCircle2, ListTodo, Users } from 'lucide-react';
 
 const Dashboard: React.FC = () => {
   // Mock data

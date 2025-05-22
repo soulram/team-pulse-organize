@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import * as RechartsPrimitive from "recharts"
 
@@ -352,6 +353,162 @@ function getPayloadConfigFromPayload(
     ? config[configLabelKey]
     : config[key as keyof typeof config]
 }
+
+// Add implementation for AreaChart
+export const AreaChart = React.forwardRef<
+  HTMLDivElement, 
+  {
+    data: any[];
+    index: string;
+    categories: string[];
+    colors?: string[];
+    valueFormatter?: (value: number) => string;
+    className?: string;
+  }
+>(({ data, index, categories, colors = ["blue"], valueFormatter, className, ...props }, ref) => {
+  // Create config from categories and colors
+  const config: ChartConfig = React.useMemo(() => {
+    return categories.reduce((acc, category, i) => ({
+      ...acc,
+      [category]: {
+        label: category,
+        color: colors[i % colors.length],
+      },
+    }), {})
+  }, [categories, colors])
+
+  const formatValue = React.useCallback(
+    (value: number) => {
+      if (valueFormatter) {
+        return valueFormatter(value)
+      }
+      return value.toString()
+    },
+    [valueFormatter]
+  )
+  
+  return (
+    <ChartContainer ref={ref} className={className} config={config} {...props}>
+      <RechartsPrimitive.AreaChart data={data}>
+        <RechartsPrimitive.CartesianGrid strokeDasharray="3 3" />
+        <RechartsPrimitive.XAxis 
+          dataKey={index}
+          axisLine={false}
+          tickLine={false}
+          tick={{ fill: 'currentColor' }}
+          tickMargin={8}
+        />
+        <RechartsPrimitive.YAxis 
+          axisLine={false}
+          tickLine={false}
+          tick={{ fill: 'currentColor' }}
+          tickFormatter={(value) => formatValue(value)}
+          tickMargin={8}
+        />
+        <ChartTooltip 
+          content={
+            <ChartTooltipContent 
+              formatter={(value) => formatValue(value as number)} 
+            />
+          }
+        />
+        {categories.map((category, i) => (
+          <RechartsPrimitive.Area
+            key={category}
+            type="monotone"
+            dataKey={category}
+            stroke={`var(--color-${category}, ${colors[i % colors.length]})`}
+            fill={`var(--color-${category}, ${colors[i % colors.length]})`}
+            fillOpacity={0.2}
+            strokeWidth={2}
+          />
+        ))}
+        <ChartLegend 
+          content={<ChartLegendContent />}
+        />
+      </RechartsPrimitive.AreaChart>
+    </ChartContainer>
+  )
+})
+
+AreaChart.displayName = "AreaChart"
+
+// Add implementation for BarChart
+export const BarChart = React.forwardRef<
+  HTMLDivElement, 
+  {
+    data: any[];
+    index: string;
+    categories: string[];
+    colors?: string[];
+    valueFormatter?: (value: number) => string;
+    className?: string;
+  }
+>(({ data, index, categories, colors = ["blue"], valueFormatter, className, ...props }, ref) => {
+  // Create config from categories and colors
+  const config: ChartConfig = React.useMemo(() => {
+    return categories.reduce((acc, category, i) => ({
+      ...acc,
+      [category]: {
+        label: category,
+        color: colors[i % colors.length],
+      },
+    }), {})
+  }, [categories, colors])
+
+  const formatValue = React.useCallback(
+    (value: number) => {
+      if (valueFormatter) {
+        return valueFormatter(value)
+      }
+      return value.toString()
+    },
+    [valueFormatter]
+  )
+  
+  return (
+    <ChartContainer ref={ref} className={className} config={config} {...props}>
+      <RechartsPrimitive.BarChart data={data}>
+        <RechartsPrimitive.CartesianGrid strokeDasharray="3 3" vertical={false} />
+        <RechartsPrimitive.XAxis 
+          dataKey={index}
+          axisLine={false}
+          tickLine={false}
+          tick={{ fill: 'currentColor' }}
+          tickMargin={8}
+        />
+        <RechartsPrimitive.YAxis 
+          axisLine={false}
+          tickLine={false}
+          tick={{ fill: 'currentColor' }}
+          tickFormatter={(value) => formatValue(value)}
+          tickMargin={8}
+        />
+        <ChartTooltip 
+          content={
+            <ChartTooltipContent 
+              formatter={(value) => formatValue(value as number)} 
+            />
+          }
+        />
+        {categories.map((category, i) => (
+          <RechartsPrimitive.Bar
+            key={category}
+            dataKey={category}
+            fill={`var(--color-${category}, ${colors[i % colors.length]})`}
+            radius={[4, 4, 0, 0]}
+            barSize={20}
+          />
+        ))}
+        <ChartLegend 
+          content={<ChartLegendContent />}
+        />
+      </RechartsPrimitive.BarChart>
+    </ChartContainer>
+  )
+})
+
+BarChart.displayName = "BarChart"
 
 export {
   ChartContainer,
