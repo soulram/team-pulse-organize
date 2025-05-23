@@ -20,7 +20,10 @@ export const NewTaskFormButton: React.FC<FormButtonProps> = (props) => {
   
   return (
     <>
-      <NewTaskButton onClick={() => setOpen(true)} {...props} />
+      <NewTaskButton 
+        onClick={() => setOpen(true)} 
+        {...props} 
+      />
       <AddTaskDialog open={open} onOpenChange={setOpen} />
     </>
   );
@@ -31,7 +34,10 @@ export const AddEventFormButton: React.FC<FormButtonProps> = (props) => {
   
   return (
     <>
-      <AddEventButton onClick={() => setOpen(true)} {...props} />
+      <AddEventButton 
+        onClick={() => setOpen(true)} 
+        {...props} 
+      />
       <EventForm open={open} onOpenChange={setOpen} />
     </>
   );
@@ -42,7 +48,10 @@ export const AddResourceFormButton: React.FC<FormButtonProps> = (props) => {
   
   return (
     <>
-      <AddResourceButton onClick={() => setOpen(true)} {...props} />
+      <AddResourceButton 
+        onClick={() => setOpen(true)} 
+        {...props} 
+      />
       <ResourceForm open={open} onOpenChange={setOpen} />
     </>
   );
@@ -53,7 +62,10 @@ export const NewProjectFormButton: React.FC<FormButtonProps> = (props) => {
   
   return (
     <>
-      <NewProjectButton onClick={() => setOpen(true)} {...props} />
+      <NewProjectButton 
+        onClick={() => setOpen(true)} 
+        {...props} 
+      />
       <ProjectForm open={open} onOpenChange={setOpen} type="new" />
     </>
   );
@@ -64,7 +76,10 @@ export const CreateNewProjectFormButton: React.FC<FormButtonProps> = (props) => 
   
   return (
     <>
-      <CreateNewProjectButton onClick={() => setOpen(true)} {...props} />
+      <CreateNewProjectButton 
+        onClick={() => setOpen(true)} 
+        {...props} 
+      />
       <ProjectForm open={open} onOpenChange={setOpen} type="create" />
     </>
   );
