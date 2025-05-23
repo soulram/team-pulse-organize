@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -14,6 +13,7 @@ import {
 import StatusBadge from '@/components/StatusBadge';
 import ProgressBar from '@/components/ProgressBar';
 import { Calendar, Users, ListTodo, Search, Plus, ArrowUpDown } from 'lucide-react';
+import { NewProjectFormButton } from '@/components/FormButtons';
 
 type ProjectViewMode = 'grid' | 'list';
 type ProjectSortOption = 'name' | 'deadline' | 'status' | 'progress';
@@ -209,9 +209,7 @@ const Projects: React.FC = () => {
           <p className="text-muted-foreground">Manage and monitor all your projects</p>
         </div>
         
-        <Button>
-          <Plus className="mr-2 h-4 w-4" /> New Project
-        </Button>
+        <NewProjectFormButton />
       </div>
 
       <Tabs defaultValue="all" className="space-y-4">
