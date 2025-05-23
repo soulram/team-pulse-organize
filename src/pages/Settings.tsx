@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -371,23 +372,23 @@ const Settings: React.FC = () => {
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between items-center">
                         <span>Create Projects</span>
-                        <Switch size="sm" defaultChecked />
+                        <Switch defaultChecked />
                       </div>
                       <div className="flex justify-between items-center">
                         <span>Delete Projects</span>
-                        <Switch size="sm" defaultChecked />
+                        <Switch defaultChecked />
                       </div>
                       <div className="flex justify-between items-center">
                         <span>Manage Users</span>
-                        <Switch size="sm" defaultChecked />
+                        <Switch defaultChecked />
                       </div>
                       <div className="flex justify-between items-center">
                         <span>View Reports</span>
-                        <Switch size="sm" defaultChecked />
+                        <Switch defaultChecked />
                       </div>
                       <div className="flex justify-between items-center">
                         <span>Manage Billing</span>
-                        <Switch size="sm" />
+                        <Switch />
                       </div>
                     </div>
                   </div>
@@ -402,19 +403,19 @@ const Settings: React.FC = () => {
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between items-center">
                         <span>View Projects</span>
-                        <Switch size="sm" defaultChecked />
+                        <Switch defaultChecked />
                       </div>
                       <div className="flex justify-between items-center">
                         <span>Create & Edit Tasks</span>
-                        <Switch size="sm" defaultChecked />
+                        <Switch defaultChecked />
                       </div>
                       <div className="flex justify-between items-center">
                         <span>Delete Tasks</span>
-                        <Switch size="sm" />
+                        <Switch />
                       </div>
                       <div className="flex justify-between items-center">
                         <span>View Reports</span>
-                        <Switch size="sm" defaultChecked />
+                        <Switch defaultChecked />
                       </div>
                     </div>
                   </div>
@@ -429,15 +430,15 @@ const Settings: React.FC = () => {
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between items-center">
                         <span>View Projects</span>
-                        <Switch size="sm" defaultChecked />
+                        <Switch defaultChecked />
                       </div>
                       <div className="flex justify-between items-center">
                         <span>Add Comments</span>
-                        <Switch size="sm" defaultChecked />
+                        <Switch defaultChecked />
                       </div>
                       <div className="flex justify-between items-center">
                         <span>Approve Deliverables</span>
-                        <Switch size="sm" defaultChecked />
+                        <Switch defaultChecked />
                       </div>
                     </div>
                   </div>
