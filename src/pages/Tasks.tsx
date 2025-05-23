@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -16,7 +15,7 @@ import StatusBadge from '@/components/StatusBadge';
 import PriorityBadge from '@/components/PriorityBadge';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Calendar, Search, Plus, ArrowUpDown, Users } from 'lucide-react';
-import NewTaskButton from '@/components/buttons/NewTaskButton';
+import { NewTaskFormButton } from '@/components/FormButtons';
 import { 
   Dialog, 
   DialogContent,
@@ -291,7 +290,6 @@ const AddTaskDialog: React.FC<AddTaskDialogProps> = ({ open, onOpenChange, statu
 const Tasks: React.FC = () => {
   const [taskView, setTaskView] = useState<'kanban' | 'list'>('kanban');
   const columns = groupTasksByStatus();
-  const [showNewTaskDialog, setShowNewTaskDialog] = useState(false);
   
   return (
     <div className="space-y-6">
@@ -301,12 +299,7 @@ const Tasks: React.FC = () => {
           <p className="text-muted-foreground">Manage and track tasks across all projects</p>
         </div>
         
-        <NewTaskButton onClick={() => setShowNewTaskDialog(true)} />
-        
-        <AddTaskDialog 
-          open={showNewTaskDialog} 
-          onOpenChange={setShowNewTaskDialog} 
-        />
+        <NewTaskFormButton />
       </div>
 
       <Tabs defaultValue="all" className="space-y-4">
