@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 import { format, addDays, startOfWeek, startOfDay, addWeeks, addMonths, subMonths, subWeeks } from "date-fns";
+import { AddEventFormButton } from "@/components/FormButtons";
 
 // Mock calendar events
 const mockEvents = [
@@ -205,7 +206,7 @@ const CalendarPage: React.FC = () => {
         
         <div className="grid grid-cols-8 min-h-[600px] min-w-[800px]">
           {hours.map(hour => (
-            <React.Fragment key={hour}>
+            <div key={hour} className="contents">
               <div className="border-r border-b p-2 text-xs text-muted-foreground">
                 {hour === 12 ? '12 PM' : hour > 12 ? `${hour-12} PM` : `${hour} AM`}
               </div>
@@ -245,7 +246,7 @@ const CalendarPage: React.FC = () => {
                   </div>
                 );
               })}
-            </React.Fragment>
+            </div>
           ))}
         </div>
       </div>
@@ -336,8 +337,10 @@ const CalendarPage: React.FC = () => {
                           </div>
                           {event.attendees.length > 0 && (
                             <div className="text-xs mt-1 truncate flex items-center gap-1">
-                              <Users className="h-3 w-3" />
-                              <span>{event.attendees.length} attendee{event.attendees.length !== 1 ? 's' : ''}</span>
+                              <Users className="h-3 w-3 text-muted-foreground" />
+                              <span className="text-xs text-muted-foreground">
+                                {event.attendees.length} attendees
+                              </span>
                             </div>
                           )}
                         </div>
@@ -362,9 +365,9 @@ const CalendarPage: React.FC = () => {
           <p className="text-muted-foreground">Schedule and manage events, meetings, and deadlines</p>
         </div>
         
-        <Button>
+        <AddEventFormButton>
           <Plus className="mr-2 h-4 w-4" /> Add Event
-        </Button>
+        </AddEventFormButton>
       </div>
 
       <Card>
