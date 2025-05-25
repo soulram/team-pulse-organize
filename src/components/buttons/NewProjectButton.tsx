@@ -6,7 +6,7 @@ import { ButtonProps } from "@/components/ui/button";
 
 interface NewProjectButtonProps extends Omit<ButtonProps, "children"> {
   variant?: ButtonProps["variant"];
-  onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: () => void;
   text?: string;
 }
 
@@ -16,9 +16,9 @@ const NewProjectButton: React.FC<NewProjectButtonProps> = ({
   onClick,
   ...props
 }) => {
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = () => {
     if (onClick) {
-      onClick(e);
+      onClick();
     } else {
       toast.success("Creating new project...");
       // Implementation for creating a new project would go here

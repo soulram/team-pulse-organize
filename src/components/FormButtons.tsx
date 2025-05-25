@@ -35,10 +35,7 @@ export const AddEventFormButton: React.FC<FormButtonProps> = (props) => {
   return (
     <>
       <AddEventButton 
-        onClick={(e) => {
-          e.preventDefault();
-          setOpen(true);
-        }} 
+        onClick={() => setOpen(true)} 
         {...props} 
       />
       <EventForm open={open} onOpenChange={setOpen} />
@@ -52,10 +49,7 @@ export const AddResourceFormButton: React.FC<FormButtonProps> = (props) => {
   return (
     <>
       <AddResourceButton 
-        onClick={(e) => {
-          e.preventDefault();
-          setOpen(true);
-        }} 
+        onClick={() => setOpen(true)} 
         {...props} 
       />
       <ResourceForm open={open} onOpenChange={setOpen} />
@@ -69,10 +63,7 @@ export const NewProjectFormButton: React.FC<FormButtonProps> = (props) => {
   return (
     <>
       <NewProjectButton 
-        onClick={(e) => {
-          e.preventDefault();
-          setOpen(true);
-        }} 
+        onClick={() => setOpen(true)} 
         {...props} 
       />
       <ProjectForm open={open} onOpenChange={setOpen} type="new" />
@@ -86,10 +77,7 @@ export const CreateNewProjectFormButton: React.FC<FormButtonProps> = (props) => 
   return (
     <>
       <CreateNewProjectButton 
-        onClick={(e) => {
-          e.preventDefault();
-          setOpen(true);
-        }} 
+        onClick={() => setOpen(true)} 
         {...props} 
       />
       <ProjectForm open={open} onOpenChange={setOpen} type="create" />
