@@ -6,6 +6,7 @@ import ProgressBar from '@/components/ProgressBar';
 import { Button } from "@/components/ui/button";
 import { AreaChart, BarChart } from "@/components/ui/chart";
 import { Clock, Calendar, ArrowRight, AlertCircle, CheckCircle2, ListTodo, Users } from 'lucide-react';
+import { CreateNewProjectFormButton } from '@/components/FormButtons';
 
 const Dashboard: React.FC = () => {
   // Mock data
@@ -48,9 +49,7 @@ const Dashboard: React.FC = () => {
           <p className="text-muted-foreground">Welcome back! Here's an overview of your projects.</p>
         </div>
         
-        <Button>
-          Create New Project
-        </Button>
+        <CreateNewProjectFormButton />
       </div>
 
       {/* Key metrics cards */}
