@@ -8,12 +8,14 @@ interface NewProjectButtonProps extends Omit<ButtonProps, "children"> {
   variant?: ButtonProps["variant"];
   onClick?: () => void;
   text?: string;
+  children?: React.ReactNode;
 }
 
 const NewProjectButton: React.FC<NewProjectButtonProps> = ({ 
   variant = "default",
   text = "New Project",
   onClick,
+  children,
   ...props
 }) => {
   const handleClick = () => {
@@ -27,11 +29,13 @@ const NewProjectButton: React.FC<NewProjectButtonProps> = ({
 
   return (
     <CreateButton 
-      text={text}
+      text={children ? "" : text}
       onClick={handleClick}
       variant={variant}
       {...props}
-    />
+    >
+      {children}
+    </CreateButton>
   );
 };
 

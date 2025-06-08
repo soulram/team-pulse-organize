@@ -7,11 +7,13 @@ import { ButtonProps } from "@/components/ui/button";
 interface CreateNewProjectButtonProps extends Omit<ButtonProps, "children"> {
   variant?: ButtonProps["variant"];
   onClick?: () => void;
+  children?: React.ReactNode;
 }
 
 const CreateNewProjectButton: React.FC<CreateNewProjectButtonProps> = ({ 
   variant = "default",
   onClick,
+  children,
   ...props
 }) => {
   const handleClick = () => {
@@ -25,11 +27,13 @@ const CreateNewProjectButton: React.FC<CreateNewProjectButtonProps> = ({
 
   return (
     <CreateButton 
-      text="Create New Project"
+      text={children ? "" : "Create New Project"}
       onClick={handleClick}
       variant={variant}
       {...props}
-    />
+    >
+      {children}
+    </CreateButton>
   );
 };
 

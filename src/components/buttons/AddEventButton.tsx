@@ -7,11 +7,13 @@ import { ButtonProps } from "@/components/ui/button";
 interface AddEventButtonProps extends Omit<ButtonProps, "children"> {
   variant?: ButtonProps["variant"];
   onClick?: () => void;
+  children?: React.ReactNode;
 }
 
 const AddEventButton: React.FC<AddEventButtonProps> = ({ 
   variant = "default",
   onClick,
+  children,
   ...props
 }) => {
   const handleClick = () => {
@@ -25,11 +27,13 @@ const AddEventButton: React.FC<AddEventButtonProps> = ({
 
   return (
     <CreateButton 
-      text="Add Event"
+      text={children ? "" : "Add Event"}
       onClick={handleClick}
       variant={variant}
       {...props}
-    />
+    >
+      {children}
+    </CreateButton>
   );
 };
 

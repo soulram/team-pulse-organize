@@ -5,20 +5,22 @@ import { Plus } from "lucide-react"
 import { Link } from "react-router-dom"
 
 interface CreateButtonProps extends ButtonProps {
-  text: string;
+  text?: string;
   to?: string;
   onClick?: () => void;
+  children?: React.ReactNode;
 }
 
 const CreateButton: React.FC<CreateButtonProps> = ({ 
   text, 
   to, 
   onClick,
+  children,
   variant = "default", 
   size = "default",
   ...props 
 }) => {
-  const buttonContent = (
+  const buttonContent = children ? children : (
     <>
       <Plus className="h-4 w-4" />
       {text}

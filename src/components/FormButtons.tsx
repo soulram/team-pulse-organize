@@ -13,9 +13,10 @@ import { AddTaskDialog } from "./forms/TaskForm";
 
 interface FormButtonProps extends Omit<ButtonProps, "children"> {
   variant?: ButtonProps["variant"];
+  children?: React.ReactNode;
 }
 
-export const NewTaskFormButton: React.FC<FormButtonProps> = (props) => {
+export const NewTaskFormButton: React.FC<FormButtonProps> = ({ children, ...props }) => {
   const [open, setOpen] = useState(false);
   
   return (
@@ -23,13 +24,15 @@ export const NewTaskFormButton: React.FC<FormButtonProps> = (props) => {
       <NewTaskButton 
         onClick={() => setOpen(true)} 
         {...props} 
-      />
+      >
+        {children}
+      </NewTaskButton>
       <AddTaskDialog open={open} onOpenChange={setOpen} />
     </>
   );
 };
 
-export const AddEventFormButton: React.FC<FormButtonProps> = (props) => {
+export const AddEventFormButton: React.FC<FormButtonProps> = ({ children, ...props }) => {
   const [open, setOpen] = useState(false);
   
   return (
@@ -37,13 +40,15 @@ export const AddEventFormButton: React.FC<FormButtonProps> = (props) => {
       <AddEventButton 
         onClick={() => setOpen(true)} 
         {...props} 
-      />
+      >
+        {children}
+      </AddEventButton>
       <EventForm open={open} onOpenChange={setOpen} />
     </>
   );
 };
 
-export const AddResourceFormButton: React.FC<FormButtonProps> = (props) => {
+export const AddResourceFormButton: React.FC<FormButtonProps> = ({ children, ...props }) => {
   const [open, setOpen] = useState(false);
   
   return (
@@ -51,13 +56,15 @@ export const AddResourceFormButton: React.FC<FormButtonProps> = (props) => {
       <AddResourceButton 
         onClick={() => setOpen(true)} 
         {...props} 
-      />
+      >
+        {children}
+      </AddResourceButton>
       <ResourceForm open={open} onOpenChange={setOpen} />
     </>
   );
 };
 
-export const NewProjectFormButton: React.FC<FormButtonProps> = (props) => {
+export const NewProjectFormButton: React.FC<FormButtonProps> = ({ children, ...props }) => {
   const [open, setOpen] = useState(false);
   
   return (
@@ -65,13 +72,15 @@ export const NewProjectFormButton: React.FC<FormButtonProps> = (props) => {
       <NewProjectButton 
         onClick={() => setOpen(true)} 
         {...props} 
-      />
+      >
+        {children}
+      </NewProjectButton>
       <ProjectForm open={open} onOpenChange={setOpen} type="new" />
     </>
   );
 };
 
-export const CreateNewProjectFormButton: React.FC<FormButtonProps> = (props) => {
+export const CreateNewProjectFormButton: React.FC<FormButtonProps> = ({ children, ...props }) => {
   const [open, setOpen] = useState(false);
   
   return (
@@ -79,7 +88,9 @@ export const CreateNewProjectFormButton: React.FC<FormButtonProps> = (props) => 
       <CreateNewProjectButton 
         onClick={() => setOpen(true)} 
         {...props} 
-      />
+      >
+        {children}
+      </CreateNewProjectButton>
       <ProjectForm open={open} onOpenChange={setOpen} type="create" />
     </>
   );
