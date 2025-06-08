@@ -11,7 +11,7 @@ import ResourceForm from "./forms/ResourceForm";
 import { ButtonProps } from "./ui/button";
 import { AddTaskDialog } from "./forms/TaskForm";
 
-interface FormButtonProps extends Omit<ButtonProps, "children"> {
+interface FormButtonProps extends Omit<ButtonProps, "onClick"> {
   variant?: ButtonProps["variant"];
   children?: React.ReactNode;
 }
